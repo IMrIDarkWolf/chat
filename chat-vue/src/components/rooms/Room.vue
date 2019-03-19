@@ -1,11 +1,13 @@
 <template>
   <div>
-    <ul>
-      <li v-for="room in rooms">
-        <h3>{{room.name}}</h3>
-        {{ room.date }}
-      </li>
-    </ul>
+    <div>
+      <ul>
+        <li v-for="room in rooms">
+          <h3 @click='openDialog(room.id)'>{{room.name}}</h3>
+          {{ room.date }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -16,7 +18,7 @@ export default {
   name: 'Room',
   data() {
     return {
-      rooms: '',
+      rooms: ''
     }
   },
   created() {
@@ -35,6 +37,9 @@ export default {
           console.log(response)
         }
       })
+    },
+    openDialog(id) {
+      this.$emit("openDialog", id)
     }
   }
 }
@@ -42,5 +47,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+  h3 {
+    cursor: pointer;
+  }
 
 </style>
