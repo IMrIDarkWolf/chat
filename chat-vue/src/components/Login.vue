@@ -26,12 +26,13 @@ export default {
           username: this.login,
           password: this.password
         },
-        success: (responce) => {
+        success: (response) => {
           alert("Спасибо что Вы с нами")
-          sessionStorage.setItem("auth_token", responce.auth_token)
+          sessionStorage.setItem("auth_token", response.auth_token)
+          this.$router.push({name: "home"})
         },
-        error: (responce) => {
-          if (responce.status === 400){
+        error: (response) => {
+          if (response.status === 400){
             alert("Логин или пароль не верен")
           }
         }
